@@ -1,0 +1,31 @@
+/* tab button */
+.tab {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+}
+
+/* change background color when mouse over */
+.tab:hover {
+    background-color: #777;
+}
+
+/* default content */
+.content {
+    color: white;
+    display: none;
+    padding: 50px;
+    text-align: center;
+}
+
+/* Style each tab content individually */
+#About { background-color: tomato; }
+#Products { background-color: darkolivegreen; }
+#Technology { background-color: dodgerblue; }
+#Downloads { background-color: orange; }   

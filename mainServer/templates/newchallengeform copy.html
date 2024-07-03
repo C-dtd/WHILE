@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- <link rel="stylesheet" href="../static/style.css"> -->
+    <link rel="stylesheet" href="../static/newchallengeform.css">
+
+</head>
+<body>
+    <div class="mobile-container">
+
+        <header>
+            <nav>
+                <div class="logo">
+                    <!-- <a href="#"><img src="{{url_for('static', filename='/Logo.png')}}" alt="" width="120px"></a> -->
+                     <a><img src="../static/Logo.png" alt="" width="120px"></a>
+                </div>
+            </nav>
+        </header> 
+
+        <div>
+        <h2>챌린지 개설</h2>
+        <label class="label" for="title">제목</label>
+        <input type="text" name="title" id="title">
+        <label class="label" for="detail">내용</label>
+        <textarea name="detail" id="detail" value="text"></textarea>
+        <p></p>
+        <label class="label" for="img-input"></label>
+        <input type="file" accept="image/png, image/jpeg, image/webp, image/bmp" id="img-input">
+        <img src="" id="thumbnail">
+        
+            <div style="display: flex; justify-content: space-between">
+                <button  onclick=postChallengeOpen()>등록</button>
+                <button  onclick="location.href= 'indexLogin.html'">취소</button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <script src="../static/challengeform.js"></script>
+</body>
+</html>

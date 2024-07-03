@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .scroll {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .post-box {
+            width: 500px;
+            height: 300px;
+            border: 1px solid black;
+            display: inline-block;
+        }
+        .thumbnail {
+            width: 500px;
+            height: 200px;
+            object-fit: cover;
+        }
+        .c-thumbnail {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+        }
+        .chl {
+            width: 300px;
+            height: 400px;
+            border: 1px solid black;
+            margin: 0 30px;
+            flex: 0 0 auto;
+        }
+        .cont {
+            display: flex;
+            justify-content: left;
+            overflow-x: auto;
+            flex-wrap: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <p>{{userInfo['NICK']}}</p>
+    <span>팔로우:</span><input type="checkbox" id="follow" {{'checked="True"' if current_user.get_id() in userInfo['FOLLOWER'] else ''}}>
+    <!-- <p>참여중인 챌린지</p>
+    <p>{{userInfo['JOIN_CH']}}</p>
+    <p>관심있는 챌린지</p>
+    <p>{{userInfo['LIKE_CH']}}</p> -->
+    
+    <h3>참여중인 챌린지</h3>
+    <div class="cont">
+    {% for i in userInfo['JOIN_CH'] %}
+        <div id="jch-container-{{i}}" class="chl">
+            <a href="/challenge?index={{i}}">
+            <img id="jch-img-{{i}}" class="c-thumbnail" src='http://127.0.0.1:5051/getimg?id={{chalInfo[i]["IMG_ID"]}}'>
+            <h1 id="jch-title-{{i}}">{{chalInfo[i]['TITLE']}}</h1>
+            <p id="jch-detail-{{i}}">{{chalInfo[i]['DETAIL']}}</p>
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+    <h3>관심있는 챌린지</h3>
+    <div class="cont">
+        {% for i in userInfo['LIKE_CH'] %}
+            <div id="lch-container-{{i}}" class="chl">
+                <a href="/challenge?index={{i}}">
+                <img id="lch-img-{{i}}" class="c-thumbnail" src='http://127.0.0.1:5051/getimg?id={{chalInfo[i]["IMG_ID"]}}'>
+                <h1 id="lch-title-{{i}}">{{chalInfo[i]['TITLE']}}</h1>
+                <p id="lch-detail-{{i}}">{{chalInfo[i]['DETAIL']}}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="follow-container scroll">
+    <h3>팔로우</h3>
+    {% for i in userInfo['FOLLOW'] %}
+        <a href="/user/{{i}}"><div>{{i}}</div></a><br>
+    {% endfor %}
+    </div>
+    <hr>
+    <div class="follower-container scroll">
+    <h3>팔로워</h3>
+        {% for i in userInfo['FOLLOWER'] %}
+            <a href="/user/{{i}}"><div>{{i}}</div></a><br>
+        {% endfor %}
+    </div>
+    <div id='comment-container'>
+    {% for i in postInfo %}
+        <a href="/post?index={{i}}">
+        <div class="post-box">
+            <h3>{{postInfo[i]['TITLE']}}</h3>
+            <p>{{postInfo[i]['CONTENT']}}</p>
+            {% if postInfo[i]['IMG_ID'] != None %}
+            <img class="thumbnail" src="http://127.0.0.1:5051/getimg?id={{postInfo[i]['IMG_ID']}}">
+            {% endif %}
+        </div>
+        </a><br>
+    {% endfor %}
+    </div>
+
+    <script>
+        const user = window.location.pathname.split('/').pop();
+        document.querySelector('#follow').addEventListener('click', async e => {
+            const response = await fetch(`/follow?id=${user}`, {
+                method: 'GET'
+            });
+            const res = await response.json();
+        });
+    </script>
+</body>
+</html>

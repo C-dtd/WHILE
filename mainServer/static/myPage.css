@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 10px;
+}
+
+
+.mobile-container {
+    width: 100%;
+    max-width: 600px;
+    height: 90vh;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar_logo{
+    text-align: center;    
+    padding: 10px;
+}
+
+
+.myPage {
+    flex: 1;
+    padding: 70px 20px 20px;
+    overflow-y: auto;
+}
+
+
+.myPage nav ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.myPage nav ul li {
+    margin: 15px 0;
+}
+
+.myPage nav ul li a {
+    display: block;
+    padding: 15px;
+    background-color: #f4f4f9;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.myPage nav ul li a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+
+
+
+
+header {
+    
+    width: 100%;
+   
+}
+
+
+
+
+.myPage label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.myPage input[type="password"],
+.myPage input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.myPage input[type="submit"],
+.myPage input[type="button"] {
+    width: 48%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.myPage input[type="submit"] {
+    background-color: #854dff;
+    color: #fff;
+}
+
+.myPage input[type="submit"]:hover {
+    background-color: #6A24FE;
+}
+
+.myPage input[type="button"] {
+    background-color: #f7a2a2;
+    color: #fff;
+}
+
+.myPage input[type="button"]:hover {
+    background-color: #e31b0c;
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>챌린지 SNS 메인 페이지</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo"><a href="/MainServer/templates/testOh.html"><img src="/MainServer/static/Logo.png"></a></div>
+            <nav class="menu">
+                <button class="menu-button" onclick="showSection('home')">홈</button>
+                <button class="menu-button" onclick="showSection('feed')">피드</button>
+                <button class="menu-button" onclick="showSection('recommend')">로그인</button>
+                <div class="search-bar" id="searchBar">
+                    <input type="text" placeholder="검색">
+                </div>
+                <button class="icon-button" onclick="toggleSearch()">
+                    <img src="search-icon.png" alt="Search">
+                </button>
+                <button class="icon-button" onclick="toggleSidebar()">
+                    <img src="menu-icon.png" alt="Menu">
+                </button>
+            </nav>
+        </header>
+        <main class="main-content">
+            <section id="home" class="content-section active">인기 챌린지, 추천 챌린지, 참여 중인 챌린지 등을 여기에 표시합니다.
+                <div id="challengehome">
+                    <ul>
+                        <li>인기 챌린지 1</li>
+                        <li>인기 챌린지 2</li>
+                        <li>인기 챌린지 3</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="feed" class="content-section">피드의 내용을 여기에 표시합니다.
+                <div id="feedhome">
+                    <ul>
+                        <li>피드 1</li>
+                        <li>피드 2</li>
+                        <li>피드 3</li>
+                    </ul>
+                </div>
+            </section>
+            <section id="recommend" class="content-section">추천 챌린지를 여기에 표시합니다.
+                <div>
+                    <h2>추천 챌린지</h2>
+                    <ul>
+                        <li>추천 챌린지 1</li>
+                        <li>추천 챌린지 2</li>
+                        <li>추천 챌린지 3</li>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <button class="close-button" onclick="toggleSidebar()">X</button>
+        <ul>
+            <li><a href="#">메뉴 1</a></li>
+            <li><a href="#">메뉴 2</a></li>
+            <li><a href="#">로그인</a></li>
+        </ul>
+    </div>
+</body>
+</html>
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .logo {
+        flex: 1;
+        text-align: center;
+    }
+
+    .menu {
+        flex: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .menu-button {
+        margin: 0 10px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .icons {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .icon-button {
+        margin: 0 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .search-bar {
+        display: none;
+        margin: 0 10px;
+        flex: 1;
+    }
+
+    .search-bar input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .main-content {
+        width: 100%;
+        max-width: 1200px;
+        margin-top: 20px;
+    }
+
+    .content-section {
+        display: none;
+    }
+
+    .content-section.active {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 300px;
+        height: 100%;
+        background-color: #007bff;
+        color: white;
+        transition: right 0.3s;
+        padding: 20px;
+    }
+
+    .sidebar.active {
+        right: 0;
+    }
+
+    .close-button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .sidebar ul li {
+        margin: 20px 0;
+    }
+
+    .sidebar ul li a {
+        color: white;
+        text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+        .menu-button {
+            padding: 5px 10px;
+        }
+
+        .search-bar input {
+            padding: 5px;
+        }
+    }
+</style>
+
+<script>
+    function showSection(sectionId) {
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.getElementById(sectionId).classList.add('active');
+    }
+
+    function toggleSearch() {
+        const searchBar = document.getElementById('searchBar');
+        searchBar.style.display = searchBar.style.display === 'none' || searchBar.style.display === '' ? 'flex' : 'none';
+    }
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+    }
+</script>

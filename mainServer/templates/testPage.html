@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="post-profile">
+        <img class="post-profile-img" src="http://127.0.0.1:5051/getimg?id=${userInfo['IMG_ID']}">
+        ${userInfo['NICK']}
+    </div>
+    <a href="/post?index=${e}">
+        <div class="detail">${post[e]['CONTENT']}</div>
+        <img class="feed-img" src="http://127.0.0.1:5051/getimg?id=${post[e]['IMG_ID']}">
+    </a>
+    <div class="content-menu-container">
+        <div class="content-menu comment">🗨 <span>${postInfo[e]['cmt'].length}</span></div>
+        <div class="content-menu like">👍 <span>${postInfo[e]['like'].length}</span></div>
+    </div>
+    <!-- <input type="file" accept="image/*" id="img-input">
+    <img src="" id="thumbnail">
+    <button type='button' onclick=request()>test</button>
+    <script>
+        async function request() {
+            if (document.querySelector('#img-input').files.length > 0) {
+            const data = new FormData();
+            data.append('img', document.querySelector('#img-input').files[0]);
+
+            const response = await fetch('http://127.0.0.1:5051/imgupload', {
+                method: 'POST',
+                body: data
+            });
+            const res = await response.json();
+            console.log(res);
+            }
+        }
+    </script> -->
+</body>
+</html>

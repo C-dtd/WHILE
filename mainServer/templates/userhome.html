@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .post-box {
+            width: 500px;
+            height: 300px;
+            border: 1px solid black;
+            display: inline-block;
+        }
+        .thumbnail {
+            width: 500px;
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    {% for i in postInfo %}
+        <a href="/post?index={{i}}">
+        <div class="post-box">
+            <h3>{{postInfo[i]['TITLE']}}</h3>
+            <p>{{postInfo[i]['CONTENT']}}</p>
+            {% if postInfo[i]['IMG_ID'] != None %}
+            <img class="thumbnail" src="http://127.0.0.1:5051/getimg?id={{postInfo[i]['IMG_ID']}}">
+            {% endif %}
+        </div>
+        </a><br>
+    {% endfor %}
+</body>
+</html>

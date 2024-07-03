@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/challenge.css">
+    <!-- <link rel="stylesheet" href="../static/challenge.css"> -->
+
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <div class="mobile-container">
+
+        <header>
+            <div class="logo">
+                <!-- <a href="#"><img src="{{url_for('static', filename='/Logo.png')}}" alt="" width="120px"></a> -->
+                <a><img src="../static/Logo.png" alt="" width="120px"></a>
+            </div>
+        </header>
+
+        <!-- 진행중인챌린지 -->
+        <div id="page1" class="page active">
+            <p>
+                <button onclick="showPage('page1')">챌린지</button>
+                <button onclick="showPage('page2')">피드</button>
+            </p>
+
+            <h1>제목: {{chInfo['TITLE']}}</h1>
+            <p>내용: {{chInfo['DETAIL']}}</p>
+            <span>관심: </span>
+            {% if current_user.is_authenticated %}
+            <input type="checkbox" id="like" {{'checked="True"' if chInfo[' ID'] in current_user.get_likeCh() else ''
+                }}>
+            {% endif %}
+            <span id="like-num">{{ (chInfo['LIKE_LIST']|length) }}</span><br>
+            {% if current_user.is_authenticated %}
+            <span>참여: </span><input type="checkbox" id="join" {{'checked="True"' if chInfo[' ID'] in
+                current_user.get_joinCh() else '' }}>
+            <br>
+            {% endif %}
+            <p>참여자 목록</p>
+            <div id="join-list" class="scroll">
+                {% for i in chInfo['JOIN_LIST'] %}
+                <p>{{i}}</p>
+                {% endfor %}
+            </div>
+            <a href="/">홈으로</a><br>
+            {% if current_user.is_authenticated and chInfo['ID'] in current_user.get_joinCh() %}
+            <textarea id="title" style="height: 16px;"></textarea><br>
+            <textarea id="content" style="height: 320px;"></textarea><br>
+            <input id="image-input" type="file" accept="image/*" id="img-input"><br>
+            <img src="" id="thumbnail"><br>
+            <button id="submit">등록</button><br>
+            {% endif %}
+            <div id='comment-container'>
+                {% for i in postInfo %}
+                <a href="/post?index={{i}}">
+                    <div class="post-box">
+                        <h3>{{postInfo[i]['TITLE']}}</h3>
+                        <p>{{postInfo[i]['CONTENT']}}</p>
+                        {% if postInfo[i]['IMG_ID'] != None %}
+                        <img class="thumbnail" src="http://127.0.0.1:5051/getimg?id={{postInfo[i]['IMG_ID']}}">
+                        {% endif %}
+                    </div>
+                </a><br>
+                {% endfor %}
+            </div>
+
+        </div> <!-- 진행중인챌린지 -->
+
+        <!-- 피드 -->
+        <div id="page2" class="page">
+            <p>
+                <button onclick="showPage('page1')">챌린지</button>
+                <button onclick="showPage('page2')">피드</button>
+            </p>
+            피드
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+            <p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p><p> 1 </p>
+         
+                   
+
+        </div> <!-- 피드 -->
+       
+        
+    </div> <!-- mobile-container -->
+
+        <script>
+
+            function showPage(pageId) {
+                // 모든 페이지 요소를 숨김
+                const pages = document.querySelectorAll('.page');
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+
+                // 선택된 페이지만 표시
+                const activePage = document.getElementById(pageId);
+                activePage.classList.add('active');
+            }
+
+
+            // postList = {{ chInfo['POST_LIST'] }}
+        </script>
+        <script src="../static/challenge.js"></script>
+</body>
+
+</html>

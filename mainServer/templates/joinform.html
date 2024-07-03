@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/join.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="form">
+        <h2>회원가입</h2>
+        <label for="email-id">이메일</label>
+        <div class="line-container">
+            <input type="text" class="input line-sub left" id="email-id">
+            <span>@</span>
+            <select class='input line-sub' id="domain-select" onchange="toggleDirectInput()">
+                <option value="naver.com">naver.com</option>
+                <option value="gmail.com">gmail.com</option>
+                <option value="daum.net">daum.net</option>
+                <option value="nate.com">nate.com</option>
+                <option value="type">직접 입력</option>
+            </select>
+            <input type="text" class="input line-sub right" id="email-domain" value="naver.com" disabled>
+        </div>
+        <input type="button" value="ID 중복확인" class='btn' onclick=emailCheck()> <!--button 사이즈 조정-->
+        <p id = 'email-text' class = 'subtext'></p>
+        <label for="pw">비밀번호</label>
+        <input type="password" class="input" id="pw">
+        <p class = 'subtext'>영문, 숫자, 특수문자( !@#$^&*() ) 조합 8~16자리로 입력해주세요.</p>
+        <label for="pw-check">비밀번호 확인</label>
+        <input type="password" class="input" id="pw-check">
+        <p id = 'pw-check-text' class = 'subtext'></p>
+        <label for="name">이름</label>
+        <input type="text" class="input" id="name">
+        <p id = 'name-text' class = 'subtext'></p>
+        <label for="name">닉네임</label>
+        <input type="text" class="input" id="nick">
+        <p id = 'nick-text' class = 'subtext'></p>
+        <label for="year">생년월일</label> <!-- 연, 월, 일 3칸으로 나누어 입력할 수 있도록 수정 -->
+        <div class="line-container">
+            <input type="number" class="input line-sub left" id="year" placeholder="yyyy" min="0" max="9999">
+            <span>-</span>
+            <input type="number" class="input line-sub" id="month" placeholder="mm" min="1" max="12">
+            <span>-</span>
+            <input type="number" class="input line-sub right" id="day" placeholder="dd" min="1" max="31">
+        </div>
+        <p id='birth-text' class='subtext'></p>
+        <button type="button" class="strong-btn" onclick=postJoin()>가입하기</button>
+    </div>
+
+    <script src="../static/joinform.js"></script>
+</body>
+</html>

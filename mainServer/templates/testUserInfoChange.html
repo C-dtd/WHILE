@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="../static/join.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="join-wrapper">
+        <h3>회원정보 수정</h3>
+        <div id="join-container">
+            <form id="join-form">
+                <input type="text" class="input" placeholder="이메일" value="{{user_info[0]}}" disabled>
+                <input type="password" class="input" placeholder="비밀번호" value="{{user_info[1]}}">
+                <input type="text" class="input" placeholder="이름" value="{{user_info[2]}}">
+                <input type="text" class="input" placeholder="닉네임" value="{{user_info[3]}}">
+                <input type="text" class="input" placeholder="생년월일" value="{{user_info[4]}}">
+                <button class="strong-btn" type='button' onclick=postJoin()>수정</button>
+            </form>
+            <button class="strong-btn" type='button' onclick=location.href='/'>취소</button>
+        </div>
+    </div>
+
+
+    <script src="../static/testUserInfoChange.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1de9391d12.js" crossorigin="anonymous"></script>
+    <title>챌린지 상세</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/challenge.css"> 
+</head>
+<body>
+    <header>
+        <div class="header-icons">
+            <img class="logo" src="../static/img/Logo.png" alt="WH:ILE">
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-plus"></i></a>
+            {% if current_user.is_authenticated %}
+            <a href="#"><img src="http://127.0.0.1:5051/getimg?id={{current_user.get_img_id()}}" class="small-profile"></a>
+            {% else %}
+            <a href="/loginform"><i class="fa-regular fa-user"></i></a>
+            {% endif %}
+        </div>
+        <div class="header">
+            <a href="javascript:showChalInfo()">챌린지</a>
+            <a href="javascript:showFeed()">피드</a>
+        </div>
+    </header>
+    <div class="main-body">
+        <section id="challenge">
+            <div class="challenge-info">
+                <img class="post-image" src="http://127.0.0.1:5051/getimg?id={{chInfo['IMG_ID']}}" alt="게시물이미지">
+                <div class="postdetail">
+                    <h3 class="post-title">{{chInfo['TITLE']}}</h3>
+                    <div class="date-row">
+                        <div>시작일자: <span id="st-date"></span></div>~
+                        <div>종료일자: <span id="end-date"></span></div>
+                    </div>
+                    <div class="sub-row">
+                    <span class="post-info">{{adminName}}</span><br>
+                    <span class="post-info">남은기간: <span id="duration"></span>일</span>
+                    </div>
+                    <div class="post-detail">
+                        {{chInfo['DETAIL'].replace('\n', '<br>')|safe}}
+                    </div>
+                    <div class="post-menu-container">
+                        <div class="post-menu">관심자 수 <span>{{chInfo['LIKE_LIST']|length}}</span></div>
+                        <div class="post-menu">참여자 수 <span>{{chInfo['JOIN_LIST']|length}}</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="post-content">
+                <p>챌린지 조건</p>
+                <p id="ver-text">인증 내용</p>
+                <div class="bar-contain">
+                    <div class="bar" id="progress-bar"></div>
+                    <span class="progress-text" id="progress-text">0%</span>
+                </div>
+            </div>
+            <div class="post-qual">
+                <button id="verify-button">챌린지 인증하기</button>
+                <button>챌린지 참여하기</button>
+            </div>
+        </section>
+        <section id="feed">  
+            {% for i in postInfo %}
+            <div class="feed">
+                <a href="/post?index={{i}}">
+                <div class="post-profile">
+                    <img class="post-profile-img" src="http://127.0.0.1:5051/getimg?id={{userInfo[postInfo[i]['WRITER']]['IMG_ID']}}">
+                    {{userInfo[postInfo[i]['WRITER']]['NICK']}}
+                </div>
+                <div class="detail">
+                    {{postInfo[i]['POSTED_AT']}}
+                    {{postInfo[i]['CONTENT']}}
+                </div>
+                {% if postInfo[i]['IMG_ID'] != None %}
+                <img class="feed-img" src="http://127.0.0.1:5051/getimg?id={{postInfo[i]['IMG_ID']}}" alt="">
+                {% endif %}
+                </a>
+                <div class="content-menu-container">
+                    <div class="content-menu comment">🗨 <span>{{postInfo[i]['CMT_LIST']|length}}</span></div>
+                    <div class="content-menu like">👍 <span>{{postInfo[i]['LIKE_LIST']|length}}</span></div>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+    </div>  
+    <script src="../static/js/challenge.js"></script>
+</body>
+</html>

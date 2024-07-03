@@ -1,0 +1,111 @@
+section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;   
+}
+.profile {
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    outline: 1px lightgray solid;
+}
+.user-info {
+    display: flex;
+    align-items: center;
+    height: 200px;
+}
+.profile-img {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 20px;
+}
+.text-box {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.follows {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.follow, .follower {
+    margin: 10px;
+    text-align: center;
+}
+.content-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.title {
+    padding: 10px;
+    width: 100%;
+}
+.post-profile {
+    display: flex;
+    align-items: center;
+}
+.post-profile-img {
+    width: 6em;
+    aspect-ratio: 1;
+}
+.feed {
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    outline: 1px lightgray solid;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+}
+.feed-img {
+    margin-left: 10%;
+    width: 80%;
+    aspect-ratio: 1.6;
+    object-fit: cover;
+    align-self: center;
+}
+.title {
+    padding: 10px;
+    width: 100%;
+}
+.content-menu-container {
+    display: flex;
+    margin-top: 10px;
+}
+.content-menu {
+    min-width: 5%;
+    margin-left: 5%;
+    margin-right: 15%;
+}
+.challenge {
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    outline: 1px lightgray solid;
+    display: inline-block;
+    position: relative;
+    width: 45%;
+    aspect-ratio: 0.8;
+    margin: calc(2.5% - 10px);
+    padding: 10px;
+}
+.challenge-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+.challenge-like {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.detail {
+    height: 4rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}

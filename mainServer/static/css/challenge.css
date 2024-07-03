@@ -1,0 +1,211 @@
+section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;   
+}
+.challengoHeader{
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+}
+.challengoHeader li{
+    width: 48%;
+    padding: 10px;
+    border:  1px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cateHeader{
+    background-color: gray;
+    padding: 10px 20px;
+    text-align: center;
+}
+.cateHeader ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.cateHeader li {
+    margin-right: 20px;
+}
+
+.cateHeader li:last-child {
+    margin-right: 0;
+}
+
+.challenge-info {
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.cateHeader a {
+    text-decoration: none;
+    padding: 20px;
+    color: black;
+    font-size: 20px;
+}
+
+.postdetail {
+    position: relative;
+    width: 45%;
+    aspect-ratio: 1;
+    
+    overflow: hidden;
+    /* text-align: center; */
+}
+.post-image {
+    width: 45%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+.post-title{
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}
+.post-detail {
+    margin: 10px 0;
+    background-color: #f0f0f0;
+    height: 21rem;
+    overflow-y: auto;
+}
+.date-row {
+    display: flex;
+    justify-content: right;
+}
+.sub-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.detail {
+    height: 4rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+.feed {
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    outline: 1px lightgray solid;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+}
+.feed-img {
+    margin-left: 10%;
+    width: 80%;
+    aspect-ratio: 1.6;
+    object-fit: cover;
+    align-self: center;
+}
+.content-menu-container {
+    display: flex;
+    margin-top: 10px;
+}
+.content-menu {
+    min-width: 5%;
+    margin-left: 5%;
+    margin-right: 15%;
+}
+.post-profile {
+    display: flex;
+    align-items: center;
+}
+.post-profile-img {
+    width: 6em;
+    aspect-ratio: 1;
+}
+.post-menu-container {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+}
+.post-menu {
+    min-width: 5%;
+    margin-left: 5%;
+    margin-right: 15%;
+}
+.post-content {
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.bar-contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 80%;
+    height: 20px;
+    background-color: #f0f0f0;            
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+.progress-text {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+.bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, #f0f0f0,#0000ff);
+    transition: width 0.5s;
+    border: 1px solid #ccc;
+    
+}
+
+.post-qual {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+    text-align: center;
+}
+.post-qual p {
+    margin: 10px 0;
+    cursor: pointer;
+    color: blue;
+}
+.postmove {
+    margin-top: 60px;
+    text-align: center;
+}
+.postmove a {
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    text-decoration: none;
+    color: #333;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}
+.postmove a:hover {
+    background-color: #ddd;
+}

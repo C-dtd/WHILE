@@ -1,0 +1,117 @@
+/* 모바일 바디 */
+.mobile-container {
+    width: 50%;
+    max-width: 1200px; /*  */
+    height: 1600px; /*  */
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    position: relative;
+    
+}
+
+/* Simulate the status bar area */
+.status-bar {
+    background-color: #6A24FE;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Main content area */
+.main-content {
+    padding: 20px;
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    height: calc(100% - 60px); /* Adjust for the header and footer */
+    /* 스크롤바숨기기 */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+/* 스크롤바숨기기 */
+.main-content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+.top_menu{
+    text-align: center;
+}
+
+.navbar_logo{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;    
+    font-size: 28px;
+    color: white;
+    text-align: center;
+    
+}
+
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: blueviolet; */
+    /* padding: 8px 12px; */
+    margin: auto;
+}
+
+.navbar_logo i{
+    color: wheat;
+}
+
+.navbar_menu{
+    display:flex;
+    list-style: none;
+    padding-left: 0;
+}
+
+.navbar_menu li{
+    padding: 8px 40px;
+}
+
+.navbar_menu li:hover{
+    background-color: whitesmoke;
+    border-radius: 7px;
+}
+
+.navbar_icons{
+    padding: 8px 12px;
+}
+
+.navbar_toogleBtn{
+    display: none;
+    position :absolute;
+    right: 32px;
+    font-size: 24px;
+    color: rgb(240, 235, 235);
+}
+
+@media screen and (max-width:450px) {
+    .navbar{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+    }
+    .navbar_menu{
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .navbar_menu li{
+        width: 100%;
+        text-align: center;
+    }
+    .navbar_icons{
+        justify-content: center;
+        
+        width: 100%;
+    }
+    .navbar_toogleBtn{
+        display: block;
+    }
+    
+    .navbar_menu.active,
+    .navbar_icons.active{
+        display: flex;
+    }
+}

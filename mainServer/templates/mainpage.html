@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1de9391d12.js" crossorigin="anonymous"></script>
+    <title>challenge</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/mainpage.css">
+</head>
+<body>
+    <header>
+        <div class="header-icons">
+            <img class="logo" src="../static/img/Logo.png" alt="WH:ILE">
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-plus"></i></a>
+            {% if current_user.is_authenticated %}
+            <a href="#"><img src="http://127.0.0.1:5051/getimg?id={{current_user.get_img_id()}}" class="small-profile"></a>
+            {% else %}
+            <a href="/loginform"><i class="fa-regular fa-user"></i></a>
+            {% endif %}
+        </div>
+        <div class="header">
+                <a href="javascript:joinChal()">홈</a>
+                <a href="javascript:feed()">피드</a>
+                <a href="javascript:recChal()">추천</a>
+        </div>
+        <!-- <div class="header">
+                <a href="#">🏚 전체</a>
+                <a href="#">🏃‍♂️ 운동</a>
+                <a href="#">📖 자기계발</a>
+                <a href="#">🍽 생활습관</a>
+        </div> -->
+    </header>
+    <div class="main-body">
+        {% if current_user.is_authenticated %}
+        <section class="challenge-section" id="join-challenge">
+            <div class="title"><h3>진행 중인 챌린지</h3></div>
+            {% for i in current_user.get_joinCh() %}
+            <div class="challenge">
+                <div class="challenge-like"><a href="#">❤</a></div>
+                <a href="/challenge?index={{chalInfo[i]['ID']}}">
+                <img class="challenge-img" src="http://127.0.0.1:5051/getimg?id={{chalInfo[i]['IMG_ID']}}" alt="">
+                <h1>{{chalInfo[i]['TITLE']}}</h1>
+                <div class="detail">
+                    {{chalInfo[i]['DETAIL'].replace('\n', '<br>')|safe}}
+                </div>
+                </a>
+                <div class="content-menu-container">
+                    <div class="content-menu comment">🗨 <span>{{chalInfo[i]['POST_LIST']|length}}</span></div>
+                    <div class="content-menu join">✋ <span>{{chalInfo[i]['JOIN_LIST']|length}}</span></div>
+                    <div class="content-menu like">👍 <span>{{chalInfo[i]['LIKE_LIST']|length}}</span></div>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+        <section class="challenge-section" id="rec-challenge">
+            <div class="title"><h3>추천 챌린지</h3></div>
+            {% for i in recList %}
+            <div class="challenge">
+                <div class="challenge-like"><a href="#">❤</a></div>
+                <a href="/challenge?index={{chalInfo[i]['ID']}}">
+                <img class="challenge-img" src="http://127.0.0.1:5051/getimg?id={{chalInfo[i]['IMG_ID']}}" alt="">
+                <h1>{{chalInfo[i]['TITLE']}}</h1>
+                <div class="detail">
+                    {{chalInfo[i]['DETAIL'].replace('\n', '<br>')|safe}}
+                </div>
+                </a>
+                <div class="content-menu-container">
+                    <div class="content-menu comment">🗨 <span>{{chalInfo[i]['POST_LIST']|length}}</span></div>
+                    <div class="content-menu join">✋ <span>{{chalInfo[i]['JOIN_LIST']|length}}</span></div>
+                    <div class="content-menu like">👍 <span>{{chalInfo[i]['LIKE_LIST']|length}}</span></div>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+        <section class="challenge-section" id="feed">
+            <!-- {% for i in postInfo %}
+            <div class="feed">
+                <a href="#">
+                <div class="post-profile">
+                    <img class="post-profile-img" src="http://127.0.0.1:5051/getimg?id={{userInfo}}">
+                    {{username}}
+                </div>
+                <div class="detail">
+                    {{postInfo[i]['CONTENT']}}
+                </div>
+                <img class="feed-img" src="http://127.0.0.1:5051/getimg?id={{postInfo[i]['IMG_ID']}}" alt="">
+                </a>
+                <div class="content-menu-container">
+                    <div class="content-menu comment">🗨 <span>{{postInfo[i]['CMT_LIST']|length}}</span></div>
+                    <div class="content-menu like">👍 <span>{{postInfo[i]['LIKE_LIST']|length}}</span></div>
+                </div>
+            </div>
+            {% endfor %} -->
+        </section>
+    </div>
+
+    <script>
+        {% if current_user.is_authenticated %}
+        document.querySelector('#rec-challenge').style.display = "None";
+        {% else %}
+        document.querySelector('#join-challenge').style.display = "None";
+        {% endif %}
+        document.querySelector('#feed').style.display = "None";
+    </script>
+    <script src="../static/js/mainpage.js"></script>
+</body>
+</html>

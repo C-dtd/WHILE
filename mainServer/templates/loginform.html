@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/login.css">
+    <meta charset="UTF-8" />
+    <title>title</title>
+</head>
+<body>
+    <div id="login-wrapper">
+        <h3>Login</h3>
+        <div id="form">
+            <input id = 'userId' type="text" class="input" placeholder="Email">
+            <input id = 'userPw' type="password" class="input" placeholder="Password">
+            <label for="remember-check">
+                <input type="checkbox" id="remember-check"> 아이디 저장하기 /
+                <a id="sign-up" href="/joinform">회원가입</a>
+            </label>
+            <p class="subtext"></p>
+            <button class="strong-btn" type='button' onclick=postLogin()>Login</button>
+        </div>
+    </div>
+    <script src="../static/js/loginform.js"></script>
+</body>
+</html>
