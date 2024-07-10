@@ -103,7 +103,7 @@
 <br>
 
 ## 👨‍👩‍👦‍👦 팀원 역할
-![image](https://github.com/C-dtd/WHILE/assets/129096109/e615161a-cdb7-4f28-af4b-1e48ba1e5298)
+![image](https://github.com/C-dtd/WHILE/assets/129096109/46108c23-8d4a-49f1-8bdc-7c6f5b7fd171)
 
 
 ## 🤾‍♂️ 트러블슈팅
