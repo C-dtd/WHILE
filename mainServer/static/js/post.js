@@ -46,7 +46,7 @@ async function nextComment() {
         comment.setAttribute('class', 'comment-box')
         html = 
         `<div class="profile">
-            <img class="comment-profile-image" src="http://127.0.0.1:5051/getimg?id=${user['IMG_ID']}" alt="">
+            <img class="comment-profile-image" src="http://${imgserver}/getimg?id=${user['IMG_ID']}" alt="">
             <div class="comment-content">
                 <div class="comment-username">${user['NICK']}</div>
                 <div class="comment-detail" id="detail-${e}">${cmtInfo[e]['CONTENT']}</div>

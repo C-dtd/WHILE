@@ -12,6 +12,7 @@ textarea {
     margin: 10px;
     padding: 5px;
     outline: 2px dashed lightgray;
+    line-height: 20px;
 }
 .comment-menu-container {
     width: 100%;
@@ -36,7 +37,7 @@ textarea {
 
 .post-content {
     width: 100%;
-    min-height: 30rem;
+    min-height: 25rem;
     /* padding: 0 10px; */
     margin-bottom: 10px;
 }
@@ -56,6 +57,7 @@ textarea {
 .post-text-box {
     margin-bottom: 10px;
     padding: 10px;
+    line-height: 23px;
 }
 .post-img-box {
     display: flex;
@@ -100,7 +102,7 @@ textarea {
     position: absolute;
     top: 0;
     border-radius: 50%;
-    margin-right: 5px;
+    margin: 5px;
 }
 .comment-content {
     margin-left: 7.5%;

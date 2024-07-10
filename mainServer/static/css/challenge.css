@@ -315,5 +315,7 @@ input[type="file"] {
 }
 
 #chal-like:hover {
+    cursor: pointer;
     background-color: lightgray;
+    border-radius: 10px;
 }
