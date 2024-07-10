@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 아이콘 폰트 -->
+    <script src="https://kit.fontawesome.com/1de9391d12.js" crossorigin="anonymous"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/mainpage.css">
+    <link rel="icon" href="../static/img/icon.png"/>
+    <title>WH:ILE</title>
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        {% include 'header.html' %}
+        <div class="second-header">
+            <ul>
+                <li><a href="javascript:home()" class="active">홈</a></li>
+                <li><a href="javascript:feed()">피드</a></li>
+                <li><a href="javascript:recChal()">추천</a></li>
+                <li><a href="javascript:likeChal()">관심</a></li>
+            </ul>
+        </div>
+    </header>
+    {% include 'nav.html' %}
+    <section class="main-body">
+        <section id="home">
+            <div class="top-image">
+                <a href="#">
+                    <img src="../static/img/develop1.svg" alt="Image 1">
+                </a>
+            </div>
+            <div class="event-box">
+                <a href="#"><!-- 이벤트 챌린지 -->
+                    <div class="box">
+                        <div class="event-box-icon">
+                            <img src="../static/img/icons8-선물-50.png" alt="">
+                        </div>
+                        이벤트 챌린지 <br> <span>특별상금, 체험단</span>
+                    </div>
+                </a>
+                <a href="#"><!-- 예정된 챌린지 -->
+                    <div class="box">
+                        <div class="event-box-icon">
+                            <img src="../static/img/icons8-퀘스트-50.png" alt="">
+                        </div>
+                        예정된 챌린지 <br> <span>사전 알림 받기!</span>
+                    </div>
+                </a>
+                <a href="#"><!-- 만보기 -->
+                    <div class="box">
+                        <div class="event-box-icon">
+                            <img src="../static/img/icons8-만보기-50.png" alt="">
+                        </div>
+                        만보기 <br> <span>최대 50p 받기</span>
+                    </div>
+                </a>
+            </div>
+            <div class="challenge-category">
+                <h3>챌린지 카테고리</h3>
+                <div class="challenge-category-box">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-surprise-box.png" alt="">
+                                        이벤트 챌린지
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-running.png" alt="">
+                                        운동
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-calendar.png" alt="">
+                                        규칙적인 생활
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-vegetable.png" alt="">
+                                        식습관
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-hand-heart.png" alt="">
+                                        마음챙김
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-harvest.png" alt="">
+                                        취미
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-cosmetic.png" alt="">
+                                        셀프케어
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon" alt="#333">
+                                        <img src="../static/img/ca-today.png" alt="">
+                                        오늘시작
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="challenge-section" id="join-challenge">
+                <div class="title">
+                    <h3>진행중인 챌린지</h3>
+                </div>
+                <div class="challenge-select">
+                    <div class="selected">전체</div>
+                    <div>운동</div>
+                    <div>식습관</div>
+                    <div>생활</div>
+                    <div>정서</div>
+                    <div>취미</div>
+                    <div>환경</div>
+                </div>
+                <div class="challenge-container">
+                </div>
+            </div>
+        </section>
+        <section class="challenge-section" id="rec-challenge">
+            <div class="title">
+                <div class="title-img"><img src="../static/img/icons8-recommend-35.png" alt=""></div>
+                <h3>추천 챌린지</h3>
+            </div>
+            <div class="challenge-select">
+                <div class="selected">전체</div>
+                <div>운동</div>
+                <div>식습관</div>
+                <div>생활</div>
+                <div>정서</div>
+                <div>취미</div>
+                <div>환경</div>
+            </div>
+            <div class="challenge-container">
+            </div>
+        </section>
+        <section class="challenge-section" id="like-challenge">
+            <div class="title">
+                <div class="title-img"><img src="../static/img/icons8-recom.gif" alt=""></div>
+                <h3>관심 챌린지</h3>
+            </div>
+            <div class="challenge-select">
+                <div class="selected">전체</div>
+                <div>운동</div>
+                <div>식습관</div>
+                <div>생활</div>
+                <div>정서</div>
+                <div>취미</div>
+                <div>환경</div>
+            </div>
+            <div class="challenge-container">
+            </div>
+        </section>
+        <section class="challenge-section" id="feed">
+            <div class="feedloader"></div>
+        </section>
+    </section>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+    <script>
+        imgserver = '{{imgserver}}';
+    </script>
+    <script src="../static/js/mainpage.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<nav class="slider-menu">
+    <div class="nav-links">
+        {% if current_user.is_authenticated %}
+        <div class="link"><a href="/user/{{current_user.get_id()}}">프로필</a></div>
+        {% endif %}
+        <div class="link"><a href="/">홈</a></div>
+        {% if current_user.is_authenticated %}
+        <div class="link"><a href="/newchallengeform">챌린지 개설</a></div>
+        <div class="link"><a href="/logout">로그아웃</a></div>
+        {% else %}
+        <div class="link"><a href="/loginform">로그인</a></div>
+        <div class="link"><a href="/joinform">회원가입</a></div>
+        {% endif %}
+    </div>
+</nav>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById("slid-icon").addEventListener("click", function(event) {
+            event.preventDefault();
+            document.querySelector("nav").classList.toggle("nav-open");
+            document.querySelector(".nav-links").classList.toggle("fade-in");
+        });
+    });
+</script>

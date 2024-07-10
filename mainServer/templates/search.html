@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 아이콘 폰트 -->
+    <script src="https://kit.fontawesome.com/1de9391d12.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/search.css">
+    <link rel="icon" href="../static/img/icon.png"/>
+    <title>WH:ILE</title>
+    <style>
+    </style>
+</head>
+<body>
+    <header>
+        {% include 'header.html' %}
+        <div class="second-header">
+            <ul>
+                <li><a href="javascript:feed()" class="active">피드</a></li>
+                <li><a href="javascript:chal()">챌린지</a></li>
+                <li><a href="javascript:user()">사용자</a></li>                    
+            </ul>
+        </div>
+    </header>
+    {% include 'nav.html' %}
+    <section class="main-body">
+        <section class="challenge-section" id="feed">
+
+        </section>
+        <section class="challenge-section" id="challenge">
+
+        </section>
+        <section class="challenge-section" id="user">
+
+        </section>
+    </section>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+    <script>
+        imgserver = '{{imgserver}}';
+    </script>
+    <script src="../static/js/search.js"></script>
+</body>
+</html>

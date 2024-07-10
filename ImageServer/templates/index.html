@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" name="img" id="imginput">
+    <button onclick="upload()">업로드</button>
+</body>
+<script>
+    async function upload() {
+        const uploadFileInput = document.querySelector('#imginput');
+        if (uploadFileInput.files.length >= 1) {
+            const data = new FormData();
+            data.append('img', uploadFileInput.files[0]);
+            const responseImg = await fetch('/imgupload', {
+                method: 'POST',
+                body: data
+            });
+            const resImg = await responseImg.json();
+            uploadFileInput.value = '';
+        }
+    }
+</script>
+</html>

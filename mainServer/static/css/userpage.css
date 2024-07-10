@@ -1,31 +1,62 @@
+.main-body {
+    margin: 310px 0 50px 0;
+    height: calc(100vh - 360px);
+}
+
+.slider-menu {
+    margin: 310px 0 50px 0;
+    height: calc(100vh - 360px);
+}
+
 section {
     display: flex;
     flex-wrap: wrap;
     width: 100%;   
 }
-.profile {
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    outline: 1px lightgray solid;
-}
 .user-info {
     display: flex;
     align-items: center;
-    height: 200px;
 }
 .profile-img {
     display: inline-block;
     width: 150px;
     height: 150px;
     object-fit: cover;
-    margin: 20px;
+    margin: 0 20px;
+    border-radius: 50%;
 }
 .text-box {
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
+.user-follow {
+    cursor: pointer;
+    padding: 5px;
+    color: #4e1ea3;
+    border: 2px solid #4e1ea3;
+    border-radius: 5px;
+    width: 100px;
+    text-align: center;
+    font-weight: bold;
+}
+.user-follow:hover{
+    background-color: #4e1ea3;
+    color: white;
+}
+
+.user-follow.followed {
+    cursor: pointer;
+    color: white;
+    background-color: #4e1ea3;
+}
+.user-follow.followed:hover{
+    background-color: white;
+    color: #4e1ea3;
+}
+
 .follows {
     display: flex;
     justify-content: space-evenly;
@@ -44,13 +75,20 @@ section {
     padding: 10px;
     width: 100%;
 }
+
 .post-profile {
     display: flex;
     align-items: center;
+    font-size: 14px;
+    font-weight: 600;
 }
+
 .post-profile-img {
-    width: 6em;
+    width: 2em;
     aspect-ratio: 1;
+    margin-right: 10px;
+    border-radius: 70%;
+    object-fit: cover;
 }
 .feed {
     border-radius: 5px;
@@ -59,14 +97,30 @@ section {
     padding: 10px;
     margin: 10px 0;
     width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
-.feed-img {
-    margin-left: 10%;
-    width: 80%;
+.feed a:hover {
+    background-color: lightgray;
+}
+.feed-img { 
+    padding: 10px;   
+    width: 60%;
     aspect-ratio: 1.6;
     object-fit: cover;
     align-self: center;
+    margin: 0 auto;
+    display: block;
 }
+.feed-date {
+    position: absolute;
+    right: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: gray;
+}
+
 .title {
     padding: 10px;
     width: 100%;
@@ -86,26 +140,92 @@ section {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     outline: 1px lightgray solid;
     display: inline-block;
-    position: relative;
     width: 45%;
     aspect-ratio: 0.8;
     margin: calc(2.5% - 10px);
     padding: 10px;
 }
+.ended {
+    width: 100%;
+    aspect-ratio: auto;
+}
+.ended a {
+    display: flex;
+    align-items: stretch;
+}
+.end-challenge-text {
+    flex-grow: 1;
+}
 .challenge-img {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.end-challenge-img {
+    width: 30%;
+    height: 30%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    margin-right: 10px;
+    flex-grow: 0;
 }
 .challenge-like {
     position: absolute;
     top: 20px;
     right: 20px;
+    font-weight: bolder;
+    text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;
 }
+.challenge p {
+    font-size: 12px;
+    color: #3d3c3c;
+    margin-bottom: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1 ;
+    -webkit-box-orient: vertical;
+}
+.challenge h3 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1 ;
+    -webkit-box-orient: vertical;
+}
+.challenge:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    border-radius: 5px;
+}
+
 .detail {
-    height: 4rem;
+    max-height: 5rem;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 5;
+    font-size: 14px;
+    padding: 10px;
+}
+.post-date {
+    position: absolute;
+    right: 10px;
+}
+.end-date {
+    text-align: right;
+}
+.block-area {
+    display: flex;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+.block {
+    background-color: lightgray;
+    width: 15px;
+    height: 15px;
+    margin: 5px;
 }

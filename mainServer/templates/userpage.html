@@ -4,61 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/1de9391d12.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <link rel="icon" href="../static/img/icon.png"/>
+    <title>WH:ILE</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/userpage.css">
 </head>
 <body>
     <header>
-        <div class="header-icons">
-            <img class="logo" src="../static/img/Logo.png" alt="WH:ILE">
-            <a href="#"><i class="fas fa-search"></i></a>
-            <a href="#"><i class="fas fa-plus"></i></a>
-            {% if current_user.is_authenticated %}
-            <a href="#"><img src="http://127.0.0.1:5051/getimg?id={{current_user.get_img_id()}}" class="small-profile"></a>
-            {% else %}
-            <a href="/loginform"><i class="fa-regular fa-user"></i></a>
-            {% endif %}
-        </div>
-        <div class="header">
-            <a href="javascript:feed()">작성한 피드</a>
-            <a href="javascript:joinChal()">진행 중인 챌린지</a>
-            <a href="javascript:likeChal()">관심 챌린지</a>
-        </div>
-    </header>
-    <div class="main-body">
+        {% include 'header.html' %}
         <div class="profile">
             <div class="user-info">
-                <img class="profile-img" src="http://127.0.0.1:5051/getimg?id={{userInfo['IMG_ID']}}" alt="">
+                <img class="profile-img" src="http://{{imgserver}}/getimg?id={{userInfo['IMG_ID']}}" alt="">
                 <div class="text-box">
-                    {{userInfo['NICK']}}
+                    <span>{{userInfo['NICK']}}</span>
+                    {% if current_user.is_authenticated and userInfo['ID'] != current_user.get_id() %}
+                        <div onclick="userFollow()" class="user-follow {{'followed' if current_user.get_id() in userInfo['FOLLOWER'] else ''}}">
+                            {{'언팔로우' if current_user.get_id() in userInfo['FOLLOWER'] else '팔로우'}}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="follows">
-                <a href="#"><div class="follow"><span>{{userInfo['FOLLOW']|length}}</span><span> 팔로잉</span></div></a>
-                <a href="#"><div class="follower"><span>{{userInfo['FOLLOWER']|length}}</span><span> 팔로워</span></div></a>
+                <a href="/follows/{{userInfo['ID']}}"><div class="follow"><span>{{userInfo['FOLLOW']|length}}</span><span> 팔로잉</span></div></a>
+                <a href="/follows/{{userInfo['ID']}}"><div class="follower"><span>{{userInfo['FOLLOWER']|length}}</span><span> 팔로워</span></div></a>
             </div>
         </div>
+        <div class="second-header">
+            <ul>
+                <li><a href="javascript:feed()" class="active">작성한 피드</a></li>
+                <li><a href="javascript:joinChal()">진행 중인 챌린지</a></li>
+                <li><a href="javascript:likeChal()">관심 챌린지</a></li>
+                <li><a href="javascript:endChal()">완료 챌린지</a></li>
+            </ul>
+        </div>
+    </header>
+    {% include 'nav.html' %}
+    <div class="main-body">
         <section id="feed">
-
+            <div class="feedloader"></div>
         </section>
         <section id="join-challenge">
             <div class="title"><h3>진행 중인 챌린지</h3></div>
             {% for i in userInfo['JOIN_CH'] %}
             <div class="challenge">
-                <div class="challenge-like"><a href="#">❤</a></div>
                 <a href="/challenge?index={{chalInfo[i]['ID']}}">
-                <img class="challenge-img" src="http://127.0.0.1:5051/getimg?id={{chalInfo[i]['IMG_ID']}}" alt="">
-                <h1>{{chalInfo[i]['TITLE']}}</h1>
-                <div class="detail">
-                    {{chalInfo[i]['DETAIL'].replace('\n', '<br>')|safe}}
-                </div>
+                    <img class="challenge-img" src="http://{{imgserver}}/getimg?id={{chalInfo[i]['IMG_ID']}}" alt="">
+                    <div class="challenge-like"><i class="fa-regular fa-heart"></i>{{chalInfo[i]['LIKE_LIST']|length}}</div>
+                    <h3>{{chalInfo[i]['TITLE']}}</h3>
+                    <p>{{chalInfo[i]['DETAIL']}}</p>
                 </a>
-                <div class="content-menu-container">
-                    <div class="content-menu comment">🗨 <span>{{chalInfo[i]['POST_LIST']|length}}</span></div>
-                    <div class="content-menu join">✋ <span>{{chalInfo[i]['JOIN_LIST']|length}}</span></div>
-                    <div class="content-menu like">👍 <span>{{chalInfo[i]['LIKE_LIST']|length}}</span></div>
-                </div>
             </div>
             {% endfor %}
         </section>
@@ -66,23 +60,59 @@
             <div class="title"><h3>관심 챌린지</h3></div>
             {% for i in userInfo['LIKE_CH'] %}
             <div class="challenge">
-                <div class="challenge-like"><a href="#">❤</a></div>
                 <a href="/challenge?index={{chalInfo[i]['ID']}}">
-                <img class="challenge-img" src="http://127.0.0.1:5051/getimg?id={{chalInfo[i]['IMG_ID']}}" alt="">
-                <h1>{{chalInfo[i]['TITLE']}}</h1>
-                <div class="detail">
-                    {{chalInfo[i]['DETAIL'].replace('\n', '<br>')|safe}}
+                    <img class="challenge-img" src="http://{{imgserver}}/getimg?id={{chalInfo[i]['IMG_ID']}}" alt="">
+                    <div class="challenge-like"><i class="fa-regular fa-heart"></i>{{chalInfo[i]['LIKE_LIST']|length}}</div>
+                    <h3>{{chalInfo[i]['TITLE']}}</h3>
+                    <p>{{chalInfo[i]['DETAIL']}}</p>
+                </a>
+            </div>
+            {% endfor %}
+        </section>
+        <section id="end-challenge">
+            <div class="title"><h3>완료 챌린지</h3></div>
+            {% for i, j, start, end in endList %}
+            <div class="challenge ended">
+                <a href="/challenge?index={{chalInfo[i]['ID']}}">
+                <img class="end-challenge-img" src="http://{{imgserver}}/getimg?id={{chalInfo[i]['IMG_ID']}}" alt="">
+                <div class="end-challenge-text">
+                    <h1>{{chalInfo[i]['TITLE']}}</h1>
+                    <div class="end-date">
+                        {{start.strftime('%Y-%m-%d')}} ~ {{end.strftime('%Y-%m-%d')}}
+                    </div>
+                    <div class="block-area block-area{{j}}">
+                    </div>
                 </div>
                 </a>
-                <div class="content-menu-container">
-                    <div class="content-menu comment">🗨 <span>{{chalInfo[i]['POST_LIST']|length}}</span></div>
-                    <div class="content-menu join">✋ <span>{{chalInfo[i]['JOIN_LIST']|length}}</span></div>
-                    <div class="content-menu like">👍 <span>{{chalInfo[i]['LIKE_LIST']|length}}</span></div>
-                </div>
             </div>
             {% endfor %}
         </section>
     </div>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+    <script>
+        imgserver = '{{imgserver}}';
+    </script>
     <script src="../static/js/userpage.js"></script>
+    <script>
+        {% for end in endList %}
+        endRecordUpdate({{end[0]}});
+        {% endfor %}
+        {% if menu == '0' %}
+        feed();
+        {% elif menu == '1' %}
+        joinChal();
+        {% elif menu == '2' %}
+        likeChal();
+        {% elif menu == '3' %}
+        endChal();
+        {% endif %}
+        const links = document.querySelectorAll('.second-header a');
+        links.forEach(link => {
+            link.classList.remove('active');
+        });
+        links[{{menu}}].classList.add('active');
+    </script>
 </body>
 </html>

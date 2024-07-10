@@ -1,109 +1,245 @@
 <!DOCTYPE html>
-<html lang="kor">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 아이콘 폰트 -->
     <script src="https://kit.fontawesome.com/1de9391d12.js" crossorigin="anonymous"></script>
-    <title>challenge</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="../static/css/mainpage.css">
+    <link rel="icon" href="../static/img/icon.png"/>
+    <title>WH:ILE</title>
+    <style>
+    </style>
 </head>
 <body>
     <header>
-        <div class="header-icons">
-            <img class="logo" src="../static/img/Logo.png" alt="WH:ILE">
-            <a href="#"><i class="fas fa-search"></i></a>
-            <a href="#"><i class="fas fa-plus"></i></a>
-            {% if current_user.is_authenticated %}
-            <a href="#"><img src="http://127.0.0.1:5051/getimg?id={{current_user.get_img_id()}}" class="small-profile"></a>
-            {% else %}
-            <a href="/loginform"><i class="fa-regular fa-user"></i></a>
-            {% endif %}
+        {% include 'header.html' %}
+        <div class="second-header">
+            <ul>
+                <li><a href="javascript:home()" class="active">홈</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="javascript:feed()">피드</a></li>
+                    <li><a href="javascript:recChal()">추천</a></li>
+                    <li><a href="javascript:likeChal()">관심</a></li>
+                {% endif %}
+            </ul>
         </div>
-        <div class="header">
-                <a href="javascript:joinChal()">홈</a>
-                <a href="javascript:feed()">피드</a>
-                <a href="javascript:recChal()">추천</a>
-        </div>
-        <!-- <div class="header">
-                <a href="#">🏚 전체</a>
-                <a href="#">🏃‍♂️ 운동</a>
-                <a href="#">📖 자기계발</a>
-                <a href="#">🍽 생활습관</a>
-        </div> -->
     </header>
-    <div class="main-body">
-        {% if current_user.is_authenticated %}
-        <section class="challenge-section" id="join-challenge">
-            <div class="title"><h3>진행 중인 챌린지</h3></div>
-            {% for i in current_user.get_joinCh() %}
-            <div class="challenge">
-                <div class="challenge-like"><a href="#">❤</a></div>
-                <a href="/challenge?index={{chalInfo[i]['ID']}}">
-                <img class="challenge-img" src="http://127.0.0.1:5051/getimg?id={{chalInfo[i]['IMG_ID']}}" alt="">
-                <h1>{{chalInfo[i]['TITLE']}}</h1>
-                <div class="detail">
-                    {{chalInfo[i]['DETAIL'].replace('\n', '<br>')|safe}}
-                </div>
+    {% include 'nav.html' %}
+    <section class="main-body">
+        <section id="home">
+            <div class="image-container">
+                <a href="#">
+                    <img id="main-image" src="" alt="">
                 </a>
-                <div class="content-menu-container">
-                    <div class="content-menu comment">🗨 <span>{{chalInfo[i]['POST_LIST']|length}}</span></div>
-                    <div class="content-menu join">✋ <span>{{chalInfo[i]['JOIN_LIST']|length}}</span></div>
-                    <div class="content-menu like">👍 <span>{{chalInfo[i]['LIKE_LIST']|length}}</span></div>
+            </div>
+            <div class="event-box">
+                <a href="#"><!-- 이벤트 챌린지 -->
+                    <div class="box">
+                        <div class="event-box-icon">
+                            <img src="../static/img/icons8-선물-50.png" alt="">
+                        </div>
+                        이벤트 챌린지 <br> <span>특별상금, 체험단</span>
+                    </div>
+                </a>
+                <a href="#"><!-- 예정된 챌린지 -->
+                    <div class="box">
+                        <div class="event-box-icon">
+                            <img src="../static/img/icons8-퀘스트-50.png" alt="">
+                        </div>
+                        예정된 챌린지 <br> <span>사전 알림 받기!</span>
+                    </div>
+                </a>
+                <a href="#"><!-- 만보기 -->
+                    <div class="box">
+                        <div class="event-box-icon">
+                            <img src="../static/img/icons8-만보기-50.png" alt="">
+                        </div>
+                        만보기 <br> <span>최대 50p 받기</span>
+                    </div>
+                </a>
+            </div>
+            <div class="challenge-category">
+                <div class="title">                    
+                    <h3>챌린지 카테고리 # <i class="fa-solid fa-icons"></i> </h3>
+                </div>
+                <div class="challenge-category-box">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-surprise-box.png" alt="">
+                                        이벤트 챌린지
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-running.png" alt="">
+                                        운동
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-calendar.png" alt="">
+                                        규칙적인 생활
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-vegetable.png" alt="">
+                                        식습관
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-hand-heart.png" alt="">
+                                        마음챙김
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-harvest.png" alt="">
+                                        취미
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon">
+                                        <img src="../static/img/ca-cosmetic.png" alt="">
+                                        셀프케어
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#">
+                                    <div class="challenge-category-icon" alt="#333">
+                                        <img src="../static/img/ca-today.png" alt="">
+                                        오늘시작
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            {% endfor %}
+            <div class="challenge-section" id="join-challenge">
+                {% if current_user.is_authenticated %}
+                <div class="title">
+                    <div class="title-img"><img src="../static/img/icon-in-progress.png" alt=""></div>
+                    <h3>진행중인 챌린지</h3>
+                </div>
+                <div class="challenge-select">
+                    <div class="selected">전체</div>
+                    <div>운동</div>
+                    <div>식습관</div>
+                    <div>생활</div>
+                    <div>정서</div>
+                    <div>취미</div>
+                    <div>환경</div>
+                </div>
+                <div class="challenge-container">
+                    {% for i in current_user.get_joinCh()[:4] %}
+                    <div class="challenge">
+                        <a href="/challenge?index={{chalInfo[i]['ID']}}">
+                            <img class="challenge-img" src="http://{{imgserver}}/getimg?id={{chalInfo[i]['IMG_ID']}}" alt="">
+                            <div class="challenge-like"><i class="fa-regular fa-heart"></i>{{chalInfo[i]['LIKE_LIST']|length}}</div>
+                            <h3>{{chalInfo[i]['TITLE']}}</h3>
+                            <p>{{chalInfo[i]['DETAIL']}}</p>
+                        </a>
+                    </div>
+                    {% endfor %}
+                    {% if current_user.get_joinCh()|length > 4 %}
+                    <div class="challenge-more-container">
+                        <a href="/user/{{current_user.get_id()}}?menu=1">
+                            <div class="challenge-more" id="" onclick="">                                
+                                <img src="../static/img/three-dots.png" alt="" class="">
+                                <p>Read More</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
         </section>
-        {% endif %}
         <section class="challenge-section" id="rec-challenge">
-            <div class="title"><h3>추천 챌린지</h3></div>
-            {% for i in recList %}
-            <div class="challenge">
-                <div class="challenge-like"><a href="#">❤</a></div>
-                <a href="/challenge?index={{chalInfo[i]['ID']}}">
-                <img class="challenge-img" src="http://127.0.0.1:5051/getimg?id={{chalInfo[i]['IMG_ID']}}" alt="">
-                <h1>{{chalInfo[i]['TITLE']}}</h1>
-                <div class="detail">
-                    {{chalInfo[i]['DETAIL'].replace('\n', '<br>')|safe}}
-                </div>
-                </a>
-                <div class="content-menu-container">
-                    <div class="content-menu comment">🗨 <span>{{chalInfo[i]['POST_LIST']|length}}</span></div>
-                    <div class="content-menu join">✋ <span>{{chalInfo[i]['JOIN_LIST']|length}}</span></div>
-                    <div class="content-menu like">👍 <span>{{chalInfo[i]['LIKE_LIST']|length}}</span></div>
-                </div>
+            <div class="title">
+                <div class="title-img"><img src="../static/img/icons8-recom-64.png" alt=""></div>
+                <h3>추천 챌린지</h3>
             </div>
-            {% endfor %}
+            <div class="challenge-select">
+                <div class="selected">전체</div>
+                <div>운동</div>
+                <div>식습관</div>
+                <div>생활</div>
+                <div>정서</div>
+                <div>취미</div>
+                <div>환경</div>
+            </div>
+            <div class="challenge-container">
+                {% for i in recList %}
+                <div class="challenge">
+                    <a href="/challenge?index={{chalInfo[i]['ID']}}">
+                        <img class="challenge-img" src="http://{{imgserver}}/getimg?id={{chalInfo[i]['IMG_ID']}}" alt="">
+                        <div class="challenge-like"><i
+                             class="fa-regular fa-heart"></i>{{chalInfo[i]['LIKE_LIST']|length}}</div>
+                        <h3>{{chalInfo[i]['TITLE']}}</h3>
+                        <p>{{chalInfo[i]['DETAIL']}}</p>
+                    </a>
+                </div>
+                {% endfor %}
+                <div class="recloader"></div>
+            </div>
+        </section>
+        <section class="challenge-section" id="like-challenge">
+            {% if current_user.is_authenticated %}
+            <div class="title">
+                <div class="title-img"><img src="../static/img/icons8-recom.gif" alt=""></div>
+                <h3>관심 챌린지</h3>
+            </div>
+            <div class="challenge-select">
+                <div class="selected">전체</div>
+                <div>운동</div>
+                <div>식습관</div>
+                <div>생활</div>
+                <div>정서</div>
+                <div>취미</div>
+                <div>환경</div>
+            </div>
+            <div class="challenge-container">
+                <div class="likeloader"></div>
+            </div>
+            {% endif %}
         </section>
         <section class="challenge-section" id="feed">
-            <!-- {% for i in postInfo %}
-            <div class="feed">
-                <a href="#">
-                <div class="post-profile">
-                    <img class="post-profile-img" src="http://127.0.0.1:5051/getimg?id={{userInfo}}">
-                    {{username}}
-                </div>
-                <div class="detail">
-                    {{postInfo[i]['CONTENT']}}
-                </div>
-                <img class="feed-img" src="http://127.0.0.1:5051/getimg?id={{postInfo[i]['IMG_ID']}}" alt="">
-                </a>
-                <div class="content-menu-container">
-                    <div class="content-menu comment">🗨 <span>{{postInfo[i]['CMT_LIST']|length}}</span></div>
-                    <div class="content-menu like">👍 <span>{{postInfo[i]['LIKE_LIST']|length}}</span></div>
-                </div>
-            </div>
-            {% endfor %} -->
+            <div class="feedloader"></div>
         </section>
-    </div>
+    </section>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
 
     <script>
-        {% if current_user.is_authenticated %}
-        document.querySelector('#rec-challenge').style.display = "None";
-        {% else %}
-        document.querySelector('#join-challenge').style.display = "None";
-        {% endif %}
-        document.querySelector('#feed').style.display = "None";
+        imgserver = '{{imgserver}}';
     </script>
     <script src="../static/js/mainpage.js"></script>
 </body>

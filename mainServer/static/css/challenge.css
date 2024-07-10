@@ -3,40 +3,6 @@ section {
     flex-wrap: wrap;
     width: 100%;   
 }
-.challengoHeader{
-    display: flex;
-    justify-content: space-between;
-    list-style-type: none;
-    padding: 0;
-}
-.challengoHeader li{
-    width: 48%;
-    padding: 10px;
-    border:  1px solid gray;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.cateHeader{
-    background-color: gray;
-    padding: 10px 20px;
-    text-align: center;
-}
-.cateHeader ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-.cateHeader li {
-    margin-right: 20px;
-}
-
-.cateHeader li:last-child {
-    margin-right: 0;
-}
 
 .challenge-info {
     padding: 10px;
@@ -51,14 +17,20 @@ section {
     color: black;
     font-size: 20px;
 }
-
 .postdetail {
     position: relative;
     width: 45%;
     aspect-ratio: 1;
-    
     overflow: hidden;
-    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+}
+.feed-date {
+    position: absolute;
+    right: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: gray;
 }
 .post-image {
     width: 45%;
@@ -70,29 +42,53 @@ section {
     font-weight: bold;
     margin: 20px 0;
     text-align: center;
+    flex-grow: 0;
 }
 .post-detail {
     margin: 10px 0;
-    background-color: #f0f0f0;
-    height: 21rem;
     overflow-y: auto;
 }
+.post-menu-container {
+    display: flex;
+    width: 100%;
+    flex-grow: 0;
+}
+.post-menu-startDay{    
+    width: 100%;
+    padding: 5px;
+}
+
+.post-menu-container i{
+    margin-right: 5px;
+}
+.post-menu {
+    min-width: 5%;    
+    margin-right: 15%;
+    padding: 5px;
+}
+
 .date-row {
     display: flex;
     justify-content: right;
+    flex-grow: 0;
 }
 .sub-row {
+    padding: 5px;
     display: flex;
     justify-content: space-between;
+    flex-grow: 0;
 }
 
 .detail {
-    height: 4rem;
+    max-height: 5rem;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 5;
+    font-size: 14px;
+    padding: 10px;
 }
+
 .feed {
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -100,13 +96,21 @@ section {
     padding: 10px;
     margin: 10px 0;
     width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
-.feed-img {
-    margin-left: 10%;
-    width: 80%;
+.feed a:hover {
+    background-color: lightgray;
+}
+.feed-img { 
+    padding: 10px;   
+    width: 60%;
     aspect-ratio: 1.6;
     object-fit: cover;
     align-self: center;
+    margin: 0 auto;
+    display: block;
 }
 .content-menu-container {
     display: flex;
@@ -120,29 +124,36 @@ section {
 .post-profile {
     display: flex;
     align-items: center;
+    font-size: 14px;
+    font-weight: 600;
 }
 .post-profile-img {
-    width: 6em;
+    width: 2em;
     aspect-ratio: 1;
-}
-.post-menu-container {
-    display: flex;
-    width: 100%;
-    position: absolute;
-    bottom: 10px;
-}
-.post-menu {
-    min-width: 5%;
-    margin-left: 5%;
-    margin-right: 15%;
+    margin-right: 10px;
+    border-radius: 70%;
+    object-fit: cover;
 }
 .post-content {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
     border: 1px solid #ddd;
-    padding-top: 20px;
+    border-radius: 5px;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    
 }
+.post-content-record{
+    padding: 5px;
+    margin : 10px 5px 5px 5px;
+    text-align: left;
+    font-weight: bold ;
+    align-self: flex-start;    
+}
+
 
 .bar-contain {
     display: flex;
@@ -182,11 +193,9 @@ section {
 
 .post-qual {
     width: 100%;
-    margin-top: 20px;
-    font-size: 16px;
+    margin-top: 10px;    
     line-height: 1.6;
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
+    padding-top: 10px;
     text-align: center;
 }
 .post-qual p {
@@ -208,4 +217,103 @@ section {
 }
 .postmove a:hover {
     background-color: #ddd;
+}
+.confirm-content{
+    width: 100%;
+    display: block;
+    padding: 10px;
+    resize: none;
+    border: 0;
+    outline: 1px solid lightgray;
+    border-radius: 5px;
+}
+.imageUpload-contain {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.upload-label {
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #6541b2;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    width: 20%;
+}
+.upload-label:hover {
+    background-color: #4e1ea3;;
+}
+input[type="file"] {
+    display: none;
+}
+.image-preview {
+    border: 2px dashed lightgray;
+    border-radius: 5px;
+    text-align: center;
+    width: 80%;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.image-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+.button-group {
+    width: 100%;
+    gap: 15px;
+    display: flex;    
+    justify-content: right;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+.button-group button {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #6541b2;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;    
+    width: 30%;
+    border: none;
+}
+.button-group button:hover{
+    background-color: #4e1ea3;
+    font-weight: bold;
+}
+
+.block-area {
+    display: flex;
+    width: 500px;
+    margin: 10px;
+    flex-wrap: wrap;
+    align-self: flex-start;
+}
+.block {
+    width: 15px;
+    height: 15px;
+    margin: 5px;
+}
+
+#chal-like:hover {
+    background-color: lightgray;
 }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1de9391d12.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="../static/img/icon.png"/>
+    <title>WH:ILE</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/follow.css">
+</head>
+<body>
+    <header>
+        {% include 'header.html' %}
+        <div class="second-header">
+            <ul>
+                <li><a href="javascript:showFollower()" class="active">팔로워</a></li>            
+                <li><a href="javascript:showFollow()">팔로잉</a></li>
+            </ul>
+        </div>
+    </header>
+    {% include 'nav.html' %}
+    <div class="main-body">
+        <section id="follower">
+            {% for i in userInfo['FOLLOWER'] %}
+            <div class="follow-item">
+                <a href="/user/{{i}}">
+                    <img class="followimg" src="http://{{imgserver}}/getimg?id={{followInfo[i]['IMG_ID']}}" alt="">
+                    <span class="followname">{{followInfo[i]['NICK']}}</span>
+                </a>
+                {% if current_user.is_authenticated and current_user.get_id() != i %}
+                <div>
+                    <span class="follow-check" id="checkfollower-{{i}}">
+                        {{'나를 팔로우하는 유저' if i in current_user.get_follower() else ''}}
+                    </span>
+                    <button class="follow-button" id="follower-{{i}}" onclick="follow(this)">
+                        {{'언팔로우' if i in current_user.get_follow() else '팔로우'}}
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </section>
+        <section id="following">
+            {% for i in userInfo['FOLLOW'] %}
+            <div class="follow-item">
+                <a href="/user/{{i}}">
+                    <img class="followimg" src="http://{{imgserver}}/getimg?id={{followInfo[i]['IMG_ID']}}" alt="">
+                    <span class="followname">{{followInfo[i]['NICK']}}</span>
+                </a>
+                {% if current_user.is_authenticated and current_user.get_id() != i %}
+                <div>
+                    <span class="follow-check" id="checkfollower-{{i}}">
+                        {{'나를 팔로우하는 유저' if i in current_user.get_follower() else ''}}
+                    </span>
+                    <button class="follow-button" id="follower-{{i}}" onclick="follow(this)">
+                        {{'언팔로우' if i in current_user.get_follow() else '팔로우'}}
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </section>
+    </div>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+    <script src="../static/js/follow.js"></script>
+</body>
+</html>

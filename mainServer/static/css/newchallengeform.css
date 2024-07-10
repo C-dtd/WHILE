@@ -1,0 +1,100 @@
+
+body {    
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;    
+}
+
+.mobile-container {
+    width: 100%;
+    max-width: 600px;
+    height: 90vh;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.logo{
+    text-align: center;
+}
+
+
+
+.label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    
+}
+
+input[type="textarea"],
+textarea{
+    width: 100%;    
+    min-height: 200px; 
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: none;
+    
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type=file]::file-selector-button {
+    width: 100px;
+    height: 35px;
+    background: #fff;
+    border: 1px solid rgb(77,77,77);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.thumbnail-preview {
+    margin-top: 10px;
+}
+#thumbnail{
+    max-width: 580px;
+    max-height: 280px;
+    object-fit: cover;    
+    display: none;
+    margin-bottom: 10px;
+}
+
+.buttons{
+    display: flex; 
+    justify-content: space-between;
+}
+
+.buttons button {
+    width: 48%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #6541b2;
+    color: #fff;
+    font-size: 14px;
+}
+
+.buttons button:hover {    
+    background-color: #4e1ea3;    
+    font-weight: bold;
+}

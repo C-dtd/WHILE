@@ -1,30 +1,313 @@
 body {
-    background-color: lightgray;
+    background-color: rgb(255, 255, 255);
     margin: 0;
     padding: 0;
-    min-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 15px;
 }
-header {
-    position: sticky;
-    background-color: white;
-    outline: 3px lightgray solid;
-    top: 0;
-    z-index: 1;
-    padding-top: 20px;
-}
+
 a {
     text-decoration: none;
-    color: black;
+    color: inherit;
 }
+
+header {
+    position: absolute;
+    top: 0;
+    background-color: white;
+    z-index: 3;
+    max-width: 600px;
+    width: 600px;
+    padding: 0 20px;
+    box-shadow: 5px 5px 10px rgba(17, 5, 5, 0.1);
+}
+
+.first-header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.logo {
+    height: 40px;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.header-icons i {
+    padding: 5px;
+    font-size: 22px;
+    width: 25px;
+    height: 25px;
+}
+.header-icons a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-icons a i {
+
+    align-items: center;
+    justify-content: center;
+}
+
+.small-profile {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+#search-icon {
+    cursor: pointer;
+}
+
+.search {
+    position: relative;
+    height: 25px;
+    width: 0px;
+    padding: 5px 0;
+    border-radius: 25px;
+    border: 0;
+    outline: 3px solid #6a24fe;
+    cursor: pointer;
+    transition: margin 300ms, width 300ms, background-position 300ms;
+    overflow: hidden;
+}
+
+.search:hover {
+    cursor: text;
+}
+
+.search.active {
+    width: 180px;
+    padding: 5px 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.second-header {
+    color: rgb(0, 0, 0);
+    padding: 10px 10px;
+    text-align: center;
+    height: 30px;
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    position: sticky;
+}
+
 .main-body {
     background-color: white;
-    width: 60%;
-    min-width: 600px;
-    min-height: 100vh;
-    margin: 0 20%;
-    padding: 0 20px;
-    box-shadow: 0 0 10px rgba(17, 5, 5, 0.1);
+    max-width: 600px;
+    width: 600px;
+    padding: 0 20px 0 20px;
+    height: calc(100vh - 170px);
+    overflow-y: auto;
+    margin: 120px 0 50px 0;
+    box-shadow: 5px 5px 10px rgba(17, 5, 5, 0.1);
+    position: relative;
 }
+
+.main-body::-webkit-scrollbar {
+    display: none;
+}
+
+.second-header {
+    color: rgb(0, 0, 0);
+    padding: 10px 10px;
+    text-align: center;
+    height: 30px;
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    position: sticky;
+}
+
+.second-header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    height: 30px;
+}
+
+.second-header li {
+    margin-right: 20px;
+}
+
+.second-header li:last-child {
+    margin-right: 0;
+}
+
+.second-header a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: 900;
+    padding: 8px 20px;
+    position: relative;
+    /* 부모 상대 위치 지정 */
+}
+
+.second-header a:hover {
+    border-bottom: solid 2px #000000;
+}
+
+.second-header a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    /* 밑줄 위치 조정 */
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    /* 밑줄 색상 */
+}
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    max-width: 600px;
+    width: 600px;
+    background-color: #ffffff;
+    height: 50px;
+    z-index: 3;
+    padding: 0 20px;
+    box-shadow: 5px -5px 10px rgba(17, 5, 5, 0.1);
+    /* 다른 요소 위에 위치 */
+}
+
+.footer-box {
+    width: 100px;
+    height: 50px;
+    justify-content: center;
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-box a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-box img {
+    width: 25px;
+    display: block;
+}
+
+.footer-box span {
+    display: block;
+}
+
+.challenge-more-container {
+    width: auto;
+    height: 30px;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.challenge-more {
+    width: 150px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-decoration: none;
+    border-bottom: 2px solid gray;
+}
+
+.challenge-more-container p {
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.slider-menu {
+    position: fixed;
+    right: calc(50% - 320px);
+    /* 오른쪽에서 왼쪽으로 나올 수 있도록 초기 위치 설정 */
+    height: 100%;
+    margin: 120px 0 50px 0;
+    height: calc(100vh - 170px);
+    max-width: 300px;
+    width: 45%;
+    transition: all 800ms cubic-bezier(.8, 0, .33, 1);
+    border-radius: 0% 0% 100% 50%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+nav.nav-open {
+    max-width: 300px;
+    width: 45%;
+    border-radius: 0% 0% 0% 0%;
+    z-index: 2;
+}
+
+nav .nav-links {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    width: calc(100% - 15px);
+    height: 100%;
+    display: inline;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 900ms cubic-bezier(.9, 0, .33, 1);
+    transform: translateX(285px);
+}
+
+nav .nav-links.fade-in {
+    opacity: 1;
+    transform: translateX(0px);
+    background: white;
+    box-shadow: -5px 0 10px rgba(17, 5, 5, 0.1);
+}
+
+nav .nav-links .link {
+    padding: 20px 0;
+    text-decoration: none;
+    font-family: sans-serif;
+    color: black;
+    font-weight: 700;
+    font-size: 1.2rem;
+    transition: all 300ms cubic-bezier(.9, 0, .33, 1);
+    text-align: center;
+    width: 100%;
+}
+
+nav .nav-links .link a {
+    padding: 5px;
+}
+
+
+nav .nav-links .link:hover {
+    background-color: lightgray;
+}
+
+/* 
 .header-icons {
     display: flex;
     align-items: center;
@@ -68,4 +351,4 @@ a {
 }
 .header a:hover {
     background-color: lightgray;
-}
+} */

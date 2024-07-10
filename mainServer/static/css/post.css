@@ -3,24 +3,59 @@ section {
     flex-wrap: wrap;
     width: 100%;   
 }
+textarea {
+    width: calc(100% - 20px);
+    height: calc(8em - 20px);
+    display: block;
+    resize: none;
+    border: 0;
+    margin: 10px;
+    padding: 5px;
+    outline: 2px dashed lightgray;
+}
+.comment-menu-container {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+.comment-menu-container button{
+    transition: background-color 0.3s ease;
+    background-color: #6541b2;
+    color: #fff;
+    font-size: 14px;
+    border:none;
+    width: 50px;
+    height: 25px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+.comment-menu-container button:hover{
+    background-color: #4e1ea3;    
+    font-weight: bold;
+}
+
 .post-content {
     width: 100%;
     min-height: 30rem;
-    padding: 0 10px;
+    /* padding: 0 10px; */
     margin-bottom: 10px;
 }
 .profile {
     width: 100%;
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 .post-profile-image {
-    width: 15%;
+    width: 100px;
     aspect-ratio: 1;
     object-fit: cover;
+    border-radius: 70%;
+    overflow: hidden;
 }
 .post-text-box {
     margin-bottom: 10px;
+    padding: 10px;
 }
 .post-img-box {
     display: flex;
@@ -38,7 +73,16 @@ section {
 .post-menu {
     min-width: 5%;
     margin-left: 5%;
-    margin-right: 15%;
+    margin-right: 5%;    
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;    
+
+}
+.post-menu:hover{
+    background-color: #ffffff;
+
 }
 .comment-box {
     width: 100%;
@@ -46,6 +90,8 @@ section {
     padding: 10px 0;
     position: relative;
     outline: 1px solid lightgray;
+    border-radius: 5px;
+
 }
 .comment-profile-image {
     width: 7.5%;
@@ -53,16 +99,57 @@ section {
     object-fit: cover;
     position: absolute;
     top: 0;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 .comment-content {
     margin-left: 7.5%;
     width: 92.5%;
     min-height: 8em;
+    padding: 5px;
 }
+.comment-buttons {
+    position: absolute;
+    top: 10px; 
+    right: 10px; 
+    display: flex;
+    gap: 5px;
+}
+.comment-buttons button {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #6541b2;
+    color: #fff;
+    font-size: 14px;
+}
+.comment-buttons button:hover {
+    background-color: #4e1ea3;    
+    font-weight: bold;
+}
+
 #post {
-    outline: 1px solid lightgray;
-    padding: 10px 0;
+    padding: 10px;
+    margin-top: 20px;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     outline: 1px lightgray solid;
+    position: relative;
+    width: calc(100% - 20px);
+}
+#post a:hover {
+    background-color: rgb(241, 240, 240);
+}
+.post-menu a:hover {
+    background-color: lightgray;
+}
+
+.post-date {
+    position: absolute;
+    right: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: gray;
 }

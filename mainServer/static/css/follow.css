@@ -1,0 +1,58 @@
+section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;   
+}
+.follow-list {
+    width: 100%;
+    overflow: hidden;
+}
+.follow-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin: 5px 0;
+    /* border: 1px solid #ccc; */    
+    width: 100%;
+    justify-content: space-between;
+}
+.follow-item a {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    max-width: 250px;
+    
+}
+.follow-item:hover {    
+    border-radius: 5px;
+    font-weight: bold;
+}
+.follow-item img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.followname {
+    margin-right: auto;
+}
+.follow-check {
+    margin-right: 30px;
+    color: gray;
+}
+
+.follow-button{
+    padding: 5px;
+    cursor: pointer;    
+    color: #6541b2; 
+    text-align: center;
+    width: 80px;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+}
+.follow-button:hover{    
+    color: #000000;
+    font-weight: bold;
+}

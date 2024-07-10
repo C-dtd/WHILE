@@ -1,0 +1,29 @@
+<div class="footer-box">
+    <a href="/"><img src="../static/img/icons8-homeW-48.png" alt="">
+        <span>홈</span>
+    </a>
+</div>
+<div class="footer-box">
+    <a href="/"><img src="../static/img/icons8-선물W-50.png" alt="">
+        <span>혜택</span>
+    </a>
+</div>
+<div class="footer-box">
+    <a href=""><img src="../static/img/icons8-camera-48.png" alt="">
+        <span>인증</span>
+    </a>
+</div>
+<div class="footer-box">
+    <a href=""><img src="../static/img/icons8-trophy-48.png" alt="">
+        <span>트로피</span>
+    </a>
+</div>
+<div class="footer-box">
+    {% if current_user.is_authenticated %}
+    <a href="/user/{{current_user.get_id()}}"><img src="../static/img/icons8-user-50.png" alt="">
+        <span>마이페이지</span></a>
+    {% else %}
+    <a href="/loginform"><img src="../static/img/icons8-user-50.png" alt="">
+        <span>마이페이지</span></a>
+    {% endif %}
+</div>

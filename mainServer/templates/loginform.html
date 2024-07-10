@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
     <link rel="stylesheet" href="../static/css/login.css">
     <meta charset="UTF-8" />
-    <title>title</title>
+    <link rel="icon" href="../static/img/icon.png"/>
+    <title>WH:ILE</title>
 </head>
 <body>
-    <div id="login-wrapper">
-        <h3>Login</h3>
-        <div id="form">
-            <input id = 'userId' type="text" class="input" placeholder="Email">
-            <input id = 'userPw' type="password" class="input" placeholder="Password">
-            <label for="remember-check">
-                <input type="checkbox" id="remember-check"> 아이디 저장하기 /
-                <a id="sign-up" href="/joinform">회원가입</a>
-            </label>
-            <p class="subtext"></p>
-            <button class="strong-btn" type='button' onclick=postLogin()>Login</button>
+    <div class="main-body"> 
+        <div id="login-wrapper">
+            <div class="logo">
+                <img src="../static/img/logo.png" alt="">
+            </div>
+            <h3>로그인</h3>
+            <div id="form">
+                <input id = 'userId' type="text" class="input" placeholder="Email">
+                <input id = 'userPw' type="password" class="input" placeholder="Password">
+                <label for="remember-check">
+                    <input type="checkbox" id="remember-check"> 아이디 저장하기 /
+                    <a id="sign-up" href="/joinform">회원가입</a>
+                </label>
+                <p class="subtext"></p>
+                <div class="buttons">
+                    <button onclick=postLogin()>로그인</button>
+                    <button onclick="location.href='/'">취소</button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="../static/js/loginform.js"></script>

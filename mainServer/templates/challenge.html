@@ -1,90 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/1de9391d12.js" crossorigin="anonymous"></script>
-    <title>챌린지 상세</title>
+    <link rel="icon" href="../static/img/icon.png"/>
+    <title>WH:ILE</title>
     <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/challenge.css"> 
+    <link rel="stylesheet" href="../static/css/challenge.css">
 </head>
+
 <body>
     <header>
-        <div class="header-icons">
-            <img class="logo" src="../static/img/Logo.png" alt="WH:ILE">
-            <a href="#"><i class="fas fa-search"></i></a>
-            <a href="#"><i class="fas fa-plus"></i></a>
-            {% if current_user.is_authenticated %}
-            <a href="#"><img src="http://127.0.0.1:5051/getimg?id={{current_user.get_img_id()}}" class="small-profile"></a>
-            {% else %}
-            <a href="/loginform"><i class="fa-regular fa-user"></i></a>
-            {% endif %}
-        </div>
-        <div class="header">
-            <a href="javascript:showChalInfo()">챌린지</a>
-            <a href="javascript:showFeed()">피드</a>
+        {% include 'header.html' %}
+        <div class="second-header">
+            <ul>
+                <li><a href="javascript:showChalInfo()" class="active">챌린지</a></li>
+                <li><a href="javascript:showFeed()">피드</a></li>
+            </ul>
         </div>
     </header>
+    {% include 'nav.html' %}
     <div class="main-body">
         <section id="challenge">
             <div class="challenge-info">
-                <img class="post-image" src="http://127.0.0.1:5051/getimg?id={{chInfo['IMG_ID']}}" alt="게시물이미지">
+                <img class="post-image" src="http://{{imgserver}}/getimg?id={{chInfo['IMG_ID']}}" alt="게시물이미지">
                 <div class="postdetail">
                     <h3 class="post-title">{{chInfo['TITLE']}}</h3>
                     <div class="date-row">
-                        <div>시작일자: <span id="st-date"></span></div>~
-                        <div>종료일자: <span id="end-date"></span></div>
                     </div>
                     <div class="sub-row">
-                    <span class="post-info">{{adminName}}</span><br>
-                    <span class="post-info">남은기간: <span id="duration"></span>일</span>
+                        <span class="post-info">{{adminName}}</span>
                     </div>
-                    <div class="post-detail">
-                        {{chInfo['DETAIL'].replace('\n', '<br>')|safe}}
+                    <div class="post-menu-startDay">
+                        <i class="fa-regular fa-flag"></i> 개설일자: <span>{{chInfo['CREATED_AT'].split(' ')[0]}}</span>
                     </div>
                     <div class="post-menu-container">
-                        <div class="post-menu">관심자 수 <span>{{chInfo['LIKE_LIST']|length}}</span></div>
-                        <div class="post-menu">참여자 수 <span>{{chInfo['JOIN_LIST']|length}}</span></div>
+                        <div class="post-menu" id="chal-like" onclick="chalLike(this)"><i class="fa-regular fa-heart"></i>좋아요 <span>{{chInfo['LIKE_LIST']|length}}</span></div>
+                        <div class="post-menu"><i class="fa-solid fa-users"></i>참여자 <span>{{chInfo['JOIN_LIST']|length}}</span></div>                       
                     </div>
                 </div>
             </div>
-            <div class="post-content">
-                <p>챌린지 조건</p>
-                <p id="ver-text">인증 내용</p>
-                <div class="bar-contain">
-                    <div class="bar" id="progress-bar"></div>
-                    <span class="progress-text" id="progress-text">0%</span>
-                </div>
+            <div class="post-detail">
+                {{chInfo['DETAIL'].replace('\n', '<br>')|safe}}
             </div>
-            <div class="post-qual">
-                <button id="verify-button">챌린지 인증하기</button>
-                <button>챌린지 참여하기</button>
-            </div>
-        </section>
-        <section id="feed">  
-            {% for i in postInfo %}
-            <div class="feed">
-                <a href="/post?index={{i}}">
-                <div class="post-profile">
-                    <img class="post-profile-img" src="http://127.0.0.1:5051/getimg?id={{userInfo[postInfo[i]['WRITER']]['IMG_ID']}}">
-                    {{userInfo[postInfo[i]['WRITER']]['NICK']}}
+            {% if current_user.is_authenticated %}
+                {% if chInfo['ID'] in current_user.get_joinCh() %}
+                <div class="post-content">
+                    <p class="post-content-record"><i style="margin-right: 5px;" class="fa-solid fa-check"></i>참여기록</p>
+                    <div class="block-area">
+                    </div>
                 </div>
-                <div class="detail">
-                    {{postInfo[i]['POSTED_AT']}}
-                    {{postInfo[i]['CONTENT']}}
+                <div class="post-qual">
+                    <section id="form">
+                        <textarea class="confirm-content" id="content" placeholder="인증내용 입력" rows="10"></textarea>
+                        <div class="imageUpload-contain">
+                            <div class="image-preview">
+                                <img id="uploadImg" src="#" alt="preview">
+                            </div>
+                            <div class="buttons">
+                                <label for="uploadFile" class="upload-label">파일첨부</label>
+                                <a href="javascript:imgDel()" class="upload-label">취소</a>
+                            </div>
+                            <input type="file" id="uploadFile" name="image" accept="image/*">
+                        </div>
+                        <div class="button-group">
+                            <button id="submit-post">등록</button>
+                            <button id="join-challenge">챌린지 그만하기</button>
+                        </div>
+                    </section>
                 </div>
-                {% if postInfo[i]['IMG_ID'] != None %}
-                <img class="feed-img" src="http://127.0.0.1:5051/getimg?id={{postInfo[i]['IMG_ID']}}" alt="">
+                {% else %}
+                <div class="button-group">
+                    <button id="join-challenge">챌린지 참여하기</button>
+                </div>
                 {% endif %}
-                </a>
-                <div class="content-menu-container">
-                    <div class="content-menu comment">🗨 <span>{{postInfo[i]['CMT_LIST']|length}}</span></div>
-                    <div class="content-menu like">👍 <span>{{postInfo[i]['LIKE_LIST']|length}}</span></div>
-                </div>
-            </div>
-            {% endfor %}
+            {% endif %}
         </section>
-    </div>  
+        <section id="feed">
+            <div class="feedloader"></div>
+            
+        </section>
+    </div>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+    {% if current_user.is_authenticated %}
+    <script>
+        const imgserver = '{{imgserver}}';
+        const userId = "{{current_user.get_id()}}";
+    </script>
+    {% endif %}
     <script src="../static/js/challenge.js"></script>
 </body>
+
 </html>

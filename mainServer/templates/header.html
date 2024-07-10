@@ -1,0 +1,55 @@
+<div class="first-header">
+    <a href="/"><img class='logo' src="../static/img/logo.png" alt=""></a>
+    <div class="header-icons">
+        <input type="text" placeholder="검색어를 입력해주세요" class="search" id="search" name="search">
+        <!-- <label for="search"> -->
+        <i class="fas fa-search" id="search-icon"></i>
+        <!-- </label> -->
+        {% if current_user.is_authenticated %}
+        <a href="/user/{{current_user.get_id()}}?menu=2"><i class="fa-regular fa-bookmark"></i></a>
+        <a href="/user/{{current_user.get_id()}}"><img src="http://{{imgserver}}/getimg?id={{current_user.get_img_id()}}" class="small-profile"></a>
+        {% else %}
+        <a href="/loginform"><i class="fa-regular fa-user"></i></a>
+        {% endif %}
+        <a href="#" id="slid-icon"><i class="fa-solid fa-list"></i></a>
+        
+    </div>
+</div>
+<script>
+    // 헤더 클릭시 밑줄
+    document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('.second-header a');
+        links.forEach(link => {
+            link.addEventListener('click', function (event) {
+                // 모든 링크에서 active 클래스 제거
+                links.forEach(otherLink => {
+                    otherLink.classList.remove('active');
+                });
+                // 현재 클릭된 링크에 active 클래스 추가
+                this.classList.add('active');
+            });
+        });
+        
+        const searchIcon = document.querySelector('#search-icon');
+        const search = document.querySelector('#search');
+        searchIcon.addEventListener('click', () => {
+            if (search.classList.contains('active')) {
+                if (search.value == '') {
+                    search.classList.remove('active');
+                    search.blur();
+                } else {
+                    location.href = '/search?q='+search.value;
+                }
+            } else {
+                search.classList.add('active');
+                search.focus();
+            }
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key == 'Enter' && document.activeElement == search && search.value != '') {
+                location.href = '/search?q='+search.value;
+            }
+        });
+    });
+</script>
